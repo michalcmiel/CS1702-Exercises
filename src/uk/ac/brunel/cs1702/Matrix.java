@@ -2,6 +2,7 @@ package uk.ac.brunel.cs1702;
 
 public class Matrix {
 
+	private int [][] matrix= new int[100][100];
 	/**
 	 * Constructor to create a matrix of size rows by cols and to initialise
 	 * each element with the value of initialValue
@@ -13,8 +14,14 @@ public class Matrix {
 	 * @param initialValue:
 	 *            each element of the matrix is initialised to this value
 	 */
-	public Matrix(int rows, int cols, int initialValue) {
-
+	public Matrix(int rows, int cols, int initialValue) {	
+		this.matrix = new int[rows][cols];
+		for (int i = 0; i < rows; i++){
+			for (int j = 0; j < cols;j++){
+				this.matrix[i][j] = initialValue;
+			}
+		}
+		
 	}
 
 	/**
@@ -28,21 +35,24 @@ public class Matrix {
 	 *            object.
 	 */
 	public Matrix(int[][] initialData) {
-
-	}
+		this.matrix = new int [initialData.length][initialData[0].length];
+		this.matrix = initialData;
+		
+			}
 
 	/**
 	 * @return Returns the number of rows of the Matrix object.
 	 */
 	public int getRows() {
-		return 0;
+
+			return 0;
 	}
 
 	/**
 	 * @return Returns the number of columns of the Matrix object.
 	 */
 	public int getCols() {
-		return 0;
+			return 0;
 	}
 
 	/**
