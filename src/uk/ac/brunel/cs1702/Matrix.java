@@ -44,15 +44,14 @@ public class Matrix {
 	 * @return Returns the number of rows of the Matrix object.
 	 */
 	public int getRows() {
-
-			return 0;
+			return this.matrix.length;
 	}
 
 	/**
 	 * @return Returns the number of columns of the Matrix object.
 	 */
 	public int getCols() {
-			return 0;
+			return this.matrix[0].length;
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class Matrix {
 	 * @return: Returns the element at row i and column j of the Matrix object
 	 */
 	public int getData(int i, int j) {
-		return 0;
+		return this.matrix[i][j];
 	}
 
 	/**
@@ -71,7 +70,7 @@ public class Matrix {
 	 *         matrix elements are stored
 	 */
 	public int[][] getData() {
-		return null;
+		return this.matrix;
 	}
 
 	/**
@@ -81,8 +80,16 @@ public class Matrix {
 	 *         parameter matrix. Returns null if dimensions do not match.
 	 */
 	public Matrix add(Matrix matrix) {
+		int[][] sum = new int[matrix.getRows()][matrix.getCols()];
+		if (this.getCols() != matrix.getCols() || this.getRows() != matrix.getRows()) {
 		return null;
-
+		}
+		for (int i = 0; i < matrix.getRows(); i++) {
+			for (int j = 0; j < matrix.getCols(); j++) {
+				sum[i][j] = this.matrix[i][j] + matrix.matrix[i][j];
+			}
+		}
+		return new Matrix(sum);
 	}
 
 	/**
@@ -92,8 +99,17 @@ public class Matrix {
 	 *         the parameter matrix. Returns null if dimensions do not match.
 	 */
 	public Matrix sub(Matrix matrix) {
-		return null;
-
+		int[][] sum = new int[matrix.getRows()][matrix.getCols()];
+		if (this.getCols() != matrix.getCols() || this.getRows() != matrix.getRows()) {
+			return null;
+		}
+		for (int i = 0; i < matrix.getRows(); i++) {
+			for (int j = 0; j < matrix.getCols(); j++) {
+				sum[i][j] = this.matrix[i][j] - matrix.matrix[i][j];			
+			}
+		}
+		return new Matrix(sum);
+	
 	}
 
 	/**
