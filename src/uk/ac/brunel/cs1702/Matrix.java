@@ -2,7 +2,7 @@ package uk.ac.brunel.cs1702;
 
 public class Matrix {
 
-	private int [][] matrix= new int[100][100];
+	private int [][] matrix= new int[0][0];
 	/**
 	 * Constructor to create a matrix of size rows by cols and to initialise
 	 * each element with the value of initialValue
@@ -15,15 +15,14 @@ public class Matrix {
 	 *            each element of the matrix is initialised to this value
 	 */
 	public Matrix(int rows, int cols, int initialValue) {	
-		this.matrix = new int[rows][cols];
-		for (int i = 0; i < rows; i++){
-			for (int j = 0; j < cols;j++){
-				this.matrix[i][j] = initialValue;
+		this.matrix = new int[rows][cols];		//constructor for a new matrix
+		for (int i = 0; i < rows; i++){		//rows
+			for (int j = 0; j < cols;j++){		//columns
+				this.matrix[i][j] = initialValue;	
 			}
 		}
 		
 	}
-
 	/**
 	 * Constructor to create a matrix of size equivalent to the size of int[][]
 	 * initialData and to initialise each element with the values in
@@ -35,23 +34,21 @@ public class Matrix {
 	 *            object.
 	 */
 	public Matrix(int[][] initialData) {
-		this.matrix = new int [initialData.length][initialData[0].length];
+		this.matrix = new int [initialData.length][initialData[0].length];	//getting the rows and cols of initial data into a matrix
 		this.matrix = initialData;
-		
 			}
-
 	/**
 	 * @return Returns the number of rows of the Matrix object.
 	 */
 	public int getRows() {
-			return this.matrix.length;
+			return this.matrix.length; //returning rows
 	}
 
 	/**
 	 * @return Returns the number of columns of the Matrix object.
 	 */
 	public int getCols() {
-			return this.matrix[0].length;
+			return this.matrix[0].length;	//returning columns
 	}
 
 	/**
@@ -62,8 +59,8 @@ public class Matrix {
 	 * @return: Returns the element at row i and column j of the Matrix object
 	 */
 	public int getData(int i, int j) {
-		return this.matrix[i][j];
-	}
+		return this.matrix[i][j];		//returning data
+	}	
 
 	/**
 	 * @return Returns a 2-dimensional array of integers (int[][]) where the
@@ -81,12 +78,12 @@ public class Matrix {
 	 */
 	public Matrix add(Matrix matrix) {
 		int[][] sum = new int[matrix.getRows()][matrix.getCols()];
-		if (this.getCols() != matrix.getCols() || this.getRows() != matrix.getRows()) {
+		if (this.getCols() != matrix.getCols() || this.getRows() != matrix.getRows()) {		//if the dimensions are not the same it (!=) returns null
 		return null;
 		}
 		for (int i = 0; i < matrix.getRows(); i++) {
 			for (int j = 0; j < matrix.getCols(); j++) {
-				sum[i][j] = this.matrix[i][j] + matrix.matrix[i][j];
+				sum[i][j] = this.matrix[i][j] + matrix.matrix[i][j];		//adds two matrixes
 			}
 		}
 		return new Matrix(sum);
@@ -100,12 +97,12 @@ public class Matrix {
 	 */
 	public Matrix sub(Matrix matrix) {
 		int[][] sum = new int[matrix.getRows()][matrix.getCols()];
-		if (this.getCols() != matrix.getCols() || this.getRows() != matrix.getRows()) {
+		if (this.getCols() != matrix.getCols() || this.getRows() != matrix.getRows()) {		//returns null if the dimensions do not match
 			return null;
 		}
 		for (int i = 0; i < matrix.getRows(); i++) {
 			for (int j = 0; j < matrix.getCols(); j++) {
-				sum[i][j] = this.matrix[i][j] - matrix.matrix[i][j];			
+				sum[i][j] = this.matrix[i][j] - matrix.matrix[i][j];	//matrix object - caller matrix		
 			}
 		}
 		return new Matrix(sum);
@@ -116,8 +113,11 @@ public class Matrix {
 	 * @return Returns the transpose of the matrix as a new Matrix object
 	 */
 	public Matrix transpose() {
-		return null;
-
+		int[][] tran = new int[this.getCols()][this.getRows()];
+		for (int i = 0; i < this.getRows(); i++)
+			for (int j = 0; j < this.getCols(); j++)
+				tran[j][i] = this.matrix[i][j];			//switches rows and cols
+	return new Matrix(tran);
 	}
 
 	/**
@@ -127,7 +127,21 @@ public class Matrix {
 	 *          object. Returns null if the number of columns does not match.
 	 */
 	public Matrix concat(Matrix matrix) {
+		int[][] conc = new int[matrix.getRows()+this.getRows()][matrix.getCols()];
+		if (this.getCols() != matrix.getCols()) {			//returns null if cols and rows dont match
 		return null;
+		}
+		for (int i = 0; i < this.getRows(); i++) {
+			for (int j = 0; j < this.getCols(); j++) {
+				conc[i][j] = this.matrix[i][j];
+			}
+			}
+		for (int i = 0; i < matrix.getRows(); i++) {
+			for (int j = 0; j < matrix.getCols(); j++) {
+				conc[this.getRows() + i][j] = matrix.matrix[i][j];
+			}
+		}
+		return new Matrix(conc);
 
 	}
 
@@ -137,8 +151,15 @@ public class Matrix {
 	 * @return: Returns an array (int[]) containing the requested row. Returns null if the row does not exist.
 	 */
 	public int[] getRow(int row) {
+		if (row<=0 || row > this.getRows()) {
 		return null;
-
+		}
+		row--;
+		int[] row1 = new int [this.getCols()];
+		for (int i = 0; i < this.getCols(); i++) {
+			row1[i] = this.matrix[row][i];
+		}
+		return row1;
 	}
 
 	/**
@@ -147,8 +168,15 @@ public class Matrix {
 	 * @return : Returns an array (int[]) containing the requested column. Returns null if the row does not exist.
 	 */
 	public int[] getCol(int col) {
+		if (col <= 0 || col > this.getCols()) {
 		return null;
-
+		}
+		col--;
+		int[] col1 = new int[this.getRows()];
+		for (int i = 0; i < this.getRows(); i++) {
+			col1[i] = this.matrix[i][col];
+		}
+		return col1;
 	}
 	
 	/**
