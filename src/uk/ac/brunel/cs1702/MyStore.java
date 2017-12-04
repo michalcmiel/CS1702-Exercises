@@ -16,9 +16,9 @@ public class MyStore {
 		this.items = items;
 	}
 
-	public void main(String[] args) {
-		
-		MyStore myStore = new MyStore();
+	public static void main(String[] args) {
+       
+        MyStore myStore = new MyStore();
         myStore.items.add(new ItemForSale("Herbal Health Supplements", 10, 5));
         myStore.items.add(new ItemForSale("Aged Parmesan cheese", 20, 10));
         myStore.items.add(new ItemForSale("Local soda drink", 20, 3));
@@ -26,10 +26,10 @@ public class MyStore {
         myStore.items.add(new ItemForSale("Tickets to Iron Maiden concert", 15, 20));
         myStore.items.add(new ItemForSale("Special cake baked in store", 3, 6));
 
-        updateInventory();
-        
+        myStore.updateInventory();
+       
         System.out.println("Inventory Updated!");
-	}
+    }
 	
     public void updateInventory() {
         for (int i = 0; i < items.size(); i++) {
