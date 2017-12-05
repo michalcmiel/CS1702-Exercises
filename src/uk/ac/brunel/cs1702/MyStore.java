@@ -77,7 +77,7 @@ public class MyStore {
                     }
                 } else {
                     if (items.get(i).getPrice() < 50) {
-                        items.get(i).setPrice(items.get(i).getPrice() + 1);
+                        items.get(i).setPrice(items.get(i).getPrice());
                     }
                 }
             }
