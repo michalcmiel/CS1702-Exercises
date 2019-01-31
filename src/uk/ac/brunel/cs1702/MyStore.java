@@ -20,6 +20,7 @@ public class MyStore {
         myStore.items.add(new ItemForSale("World War I Medals", 0, 80));
         myStore.items.add(new ItemForSale("Tickets to Iron Maiden concert", 15, 20));
         myStore.items.add(new ItemForSale("Special cake baked in store", 3, 6));
+        myStore.items.add(new ItemForSale("new item", 3, 6));
         myStore.updateInventory();
         System.out.println("Inventory Updated!");
     }
@@ -35,7 +36,7 @@ public class MyStore {
 	                        cake(i);
                 }
 	                
-            if (!items.get(i).getName().equals("World War I Medals")) {	
+            if (!items.get(i).getName().equals("World War I Medals") && !items.get(i).getName().equals("Local soda drink")) {	
                 items.get(i).setNumberOfDaysToSellIn(items.get(i).getNumberOfDaysToSellIn() - 1);
                 // numberofdays goes -1 to all except medals
             }
