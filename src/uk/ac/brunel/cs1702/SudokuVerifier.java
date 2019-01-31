@@ -1,6 +1,7 @@
 package uk.ac.brunel.cs1702;
 import java.util.*;
 public class SudokuVerifier {
+	////SUDOKU VERIFIER
 
 	public static boolean checkLength(String candidateSolution){
 		if (candidateSolution.length()!=81){			//returns false if length is not equal to 81
