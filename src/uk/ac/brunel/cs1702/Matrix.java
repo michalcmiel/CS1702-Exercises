@@ -1,5 +1,7 @@
 package uk.ac.brunel.cs1702;
 
+import java.util.Arrays;
+
 public class Matrix {
 
 	private int [][] matrix= new int[0][0];
@@ -195,25 +197,13 @@ public class Matrix {
 	}
 	
 	public static void main(String[] args){
-		int[][] dataA = {{2, 2},{3, 3}};
+		int[][] dataA = {{2, 2,3,3,3},{3, 3,3,3,3}};
 		int[][] dataB = {{1, 1},{1, 1}};
 		
 		Matrix matrixA = new Matrix(dataA);
 		Matrix matrixB = new Matrix(dataB);
 		
-		System.out.println("A+B");
-		System.out.println(matrixA.add(matrixB).toString());
-		System.out.println("A-B");
-		System.out.println(matrixA.sub(matrixB).toString());
-		System.out.println("transpose(A)");
-		System.out.println(matrixA.transpose().toString());
-		System.out.println("A concat B");
-		System.out.println(matrixA.concat(matrixB).toString());
-		System.out.println("B concat A");
-		System.out.println(matrixB.concat(matrixA).toString());
-		System.out.println("(A concat B) + (B concat A)");
-		System.out.println(matrixA.concat(matrixB).add(matrixB.concat(matrixA)).toString());
-		System.out.println("A+B-B");
-		System.out.println(matrixA.add(matrixB).sub(matrixB).toString());
+		System.out.println(matrixA.toString());
+
 	}
 }
